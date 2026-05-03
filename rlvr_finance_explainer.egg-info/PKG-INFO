@@ -1,3 +1,20 @@
+Metadata-Version: 2.4
+Name: rlvr-finance-explainer
+Version: 0.1.0
+Summary: An interactive primer on RLVR (Reinforcement Learning with Verifiable Rewards) for finance.
+Author: Joel Fuentes
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: streamlit>=1.35
+Requires-Dist: plotly>=5.20
+Requires-Dist: pandas>=2.2
+Requires-Dist: numpy>=1.26
+Requires-Dist: scipy>=1.13
+Provides-Extra: dev
+Requires-Dist: ruff>=0.4; extra == "dev"
+Requires-Dist: black>=24.3; extra == "dev"
+Requires-Dist: pytest>=8.0; extra == "dev"
+
 # RLVR for Finance — An Interactive Primer
 
 A small, focused educational artifact that teaches RLVR (Reinforcement Learning with Verifiable Rewards) from first principles, then demonstrates — through three runnable examples — why the **verifier**, not the model or the algorithm, is the central design problem in finance.

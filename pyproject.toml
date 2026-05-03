@@ -1,0 +1,37 @@
+[project]
+name = "rlvr-finance-explainer"
+version = "0.1.0"
+description = "An interactive primer on RLVR (Reinforcement Learning with Verifiable Rewards) for finance."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Joel Fuentes" }]
+dependencies = [
+    "streamlit>=1.35",
+    "plotly>=5.20",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "scipy>=1.13",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.4",
+    "black>=24.3",
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# This is a Streamlit app, not an installable library. Skip package discovery.
+py-modules = []
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
