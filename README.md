@@ -48,10 +48,16 @@ rlvr-finance-explainer/
 │       ├── 03_filing_reasoning.py
 │       └── 04_recap.py
 │
-└── examples/                     Verifiers and cached artifacts (the substance)
-    ├── 01_bond_pricing/
-    ├── 02_trade_signals/
-    └── 03_filing_reasoning/
+├── examples/                     Verifiers and cached artifacts (the substance)
+│   ├── 01_bond_pricing/
+│   ├── 02_trade_signals/
+│   └── 03_filing_reasoning/
+│
+└── homework/                     Westworld-style verifier exercise
+    ├── README.md                 Problem statement + discussion questions
+    ├── simulator.py              Toy broker simulator + sample agents
+    ├── verifier_starter.py       Four TODO stubs for the student
+    └── solution.py               Reference implementation
 ```
 
 ---
