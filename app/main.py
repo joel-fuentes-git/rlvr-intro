@@ -65,8 +65,6 @@ with st.sidebar:
     st.markdown(
         """
 <div style="font-size:12px; color: var(--ink-soft); line-height:1.6;">
-Material from Joel Fuentes' Financial Mathematics seminar at the University of Chicago.
-<br/><br/>
 Pedagogical artifact — not a training pipeline, not financial advice.
 </div>
         """,

@@ -10,14 +10,14 @@ from __future__ import annotations
 import plotly.graph_objects as go
 import plotly.io as pio
 
-INK = "#1A1A1A"
-INK_SOFT = "#5A5A5A"
-RULE = "#E8E6E0"
-ACCENT = "#1F6FEB"
-GOOD = "#2D7A4F"
-BAD = "#B8341F"
-BG = "#FAFAF7"
-SURFACE = "#FFFFFF"
+INK = "#ECEDEE"
+INK_SOFT = "#9BA3AF"
+RULE = "#262B34"
+ACCENT = "#5B9CFF"
+GOOD = "#3FB57E"
+BAD = "#E5694F"
+BG = "#0E1116"
+SURFACE = "#161A21"
 
 
 def _register_template() -> None:
@@ -26,7 +26,7 @@ def _register_template() -> None:
             font=dict(family="Inter, sans-serif", size=13, color=INK),
             paper_bgcolor=BG,
             plot_bgcolor=BG,
-            colorway=[ACCENT, BAD, GOOD, "#8A6818", "#5A5A5A"],
+            colorway=[ACCENT, BAD, GOOD, "#D9A441", "#9BA3AF"],
             margin=dict(l=48, r=24, t=24, b=48),
             xaxis=dict(
                 showgrid=False,

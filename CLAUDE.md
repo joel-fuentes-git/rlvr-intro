@@ -385,6 +385,11 @@ rlvr-finance-explainer/
 │       ├── filings/           # pre-processed 10-K excerpts
 │       ├── questions.json
 │       └── completions.json
+├── homework/                  # Westworld-style verifier exercise (see §11)
+│   ├── README.md
+│   ├── simulator.py           # Toy broker simulator + sample agents
+│   ├── verifier_starter.py    # Four TODO stubs for the student
+│   └── solution.py            # Reference implementation
 ├── data/                      # raw inputs (yfinance pulls, etc.)
 └── notebooks/                 # exploratory work, not shipped
 ```
@@ -448,6 +453,59 @@ To revisit after the first version of the talk lands:
 - No marketing register. No "powerful" or "cutting-edge" or "revolutionary."
 - Assume the reader is technically literate but not necessarily an RL specialist. Define jargon the first time it appears.
 - One bold takeaway sentence per page. Earn it.
+
+---
+
+## 11. Homework
+
+A small, self-contained exercise that lives outside the talk narrative but reinforces its central thesis. Inspired by Halluminate's [Westworld](https://www.halluminate.ai/blog/westworld) — a suite of web-app simulators built to give web agents deterministic, reproducible rewards instead of live-site noise. The same idea transplants to a finance toy problem.
+
+### 11.1 Premise
+
+The student is given a deterministic in-memory broker simulator with three venues quoting one ticker, and is asked to buy 100 shares of ACME at the best total price. The student does *not* write the agent. The student writes the *verifier*.
+
+```
+Venue A:  40 shares @ $10.00
+Venue B:  80 shares @ $10.05
+Venue C: 200 shares @ $10.20
+
+Optimal: 40 @ A + 60 @ B = $1,003.00
+```
+
+### 11.2 The task
+
+Implement three sub-verifiers and one composite, mapped one-to-one to the three verification methods in the Westworld blog:
+
+| Sub-verifier | Westworld analogue | What it checks |
+|---|---|---|
+| `state_verifier` | State-based unit test | Final shares held and cash spent match expectations exactly |
+| `component_verifier` | Component-level verification | Each expected fill (venue, shares, price) appears in the fill log |
+| `ground_truth_verifier` | Real-time calculated ground truth | Optimal cost is computed on the fly from the simulator's quotes, then compared to the agent's spend |
+| `composite_reward` | — | Combine the three; the choice of combinator is itself the lesson |
+
+Three sample agents — `agent_optimal`, `agent_lazy`, `agent_overbought` — drive scoring. A correct solution produces three meaningfully different composite rewards, with `optimal` clearly winning.
+
+### 11.3 Pedagogical point
+
+The reference solution uses geometric mean for the composite. The interesting case is `agent_lazy`, which scores ~0.98 on `ground_truth_verifier` in isolation (bought the right quantity, overpaid only ~1.7%) but collapses to 0.0 in the composite because the state and component checks both fail. This is the same lesson Example 2 makes about reward hacking: a single permissive sub-verifier is not enough. The *composition* of verifiers is where hacking gets closed off.
+
+The discussion questions in `homework/README.md` push further:
+
+1. Which sub-verifier *almost* misses `agent_lazy`, and what does that say about choosing a combinator?
+2. If an adversarial agent forges `BrokerState` directly without calling `Simulator.submit()`, which sub-verifier still catches it? (The answer: `component_verifier`, since the fills list will be empty — illustrating that *where you put the source of truth* matters more than the verifier code itself.)
+3. What is the analogous "simulator" in Example 2 (trade signals), and why is it harder to build there?
+
+### 11.4 Layout
+
+```
+homework/
+├── README.md              Problem statement + discussion questions
+├── simulator.py           Quote, Fill, BrokerState, Simulator, sample agents
+├── verifier_starter.py    Four TODO stubs; runnable as-is (prints zeros)
+└── solution.py            Reference implementation
+```
+
+The homework is independent of the Streamlit app and the examples — no shared imports, no installation step beyond a standard Python 3.10+ runtime.
 
 ---
 

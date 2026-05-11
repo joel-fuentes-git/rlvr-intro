@@ -1,19 +1,21 @@
 :root {
-    --bg: #FAFAF7;
-    --surface: #FFFFFF;
-    --ink: #1A1A1A;
-    --ink-soft: #5A5A5A;
-    --rule: #E8E6E0;
-    --accent: #1F6FEB;
-    --good: #2D7A4F;
-    --bad: #B8341F;
+    --bg: #0E1116;
+    --surface: #161A21;
+    --surface-2: #1C2129;
+    --ink: #ECEDEE;
+    --ink-soft: #9BA3AF;
+    --rule: #262B34;
+    --accent: #5B9CFF;
+    --good: #3FB57E;
+    --bad: #E5694F;
+    --warn: #D9A441;
 
     --space-1: 4px;
     --space-2: 8px;
-    --space-3: 16px;
-    --space-4: 24px;
-    --space-5: 48px;
-    --space-6: 96px;
+    --space-3: 12px;
+    --space-4: 18px;
+    --space-5: 32px;
+    --space-6: 56px;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
@@ -26,11 +28,12 @@ html, body, [class*="css"] {
 
 .stApp {
     background-color: var(--bg);
+    color: var(--ink);
 }
 
 /* Sidebar */
 [data-testid="stSidebar"] {
-    background-color: var(--bg);
+    background-color: #0A0D12;
     border-right: 1px solid var(--rule);
 }
 
@@ -38,7 +41,21 @@ html, body, [class*="css"] {
 [data-testid="stSidebar"] .stMarkdown li {
     color: var(--ink);
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.55;
+}
+
+[data-testid="stSidebar"] a,
+[data-testid="stSidebarNav"] a {
+    color: var(--ink-soft) !important;
+}
+
+[data-testid="stSidebar"] a:hover,
+[data-testid="stSidebarNav"] a:hover {
+    color: var(--ink) !important;
+}
+
+[data-testid="stSidebar"] hr {
+    border-color: var(--rule);
 }
 
 /* Headings */
@@ -49,22 +66,37 @@ h1, h2, h3, h4 {
     color: var(--ink);
 }
 
-h1 { font-size: 36px; line-height: 1.2; margin-bottom: var(--space-3); }
-h2 { font-size: 22px; line-height: 1.3; margin-top: var(--space-5); margin-bottom: var(--space-2); }
-h3 { font-size: 17px; line-height: 1.4; margin-top: var(--space-4); margin-bottom: var(--space-2); }
+h1 { font-size: 34px; line-height: 1.2; margin-top: 0; margin-bottom: var(--space-3); }
+h2 { font-size: 21px; line-height: 1.3; margin-top: var(--space-4); margin-bottom: var(--space-2); }
+h3 { font-size: 16px; line-height: 1.4; margin-top: var(--space-3); margin-bottom: var(--space-1); }
 
 /* Body text */
 p, li {
     color: var(--ink);
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: var(--space-2);
 }
 
 /* Tabular figures for any numeric content */
 code, pre, .mono, [class*="mono"] {
     font-family: "JetBrains Mono", monospace;
     font-variant-numeric: tabular-nums;
-    font-size: 14px;
+    font-size: 13px;
+    color: var(--ink);
+}
+
+code {
+    background: var(--surface-2);
+    padding: 1px 6px;
+    border-radius: 3px;
+}
+
+pre {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: var(--space-3);
+    border-radius: 4px;
 }
 
 /* Eyebrow label */
@@ -75,16 +107,16 @@ code, pre, .mono, [class*="mono"] {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--ink-soft);
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-2);
 }
 
 /* Subtitle under h1 */
 .subtitle {
-    font-size: 18px;
+    font-size: 17px;
     color: var(--ink-soft);
     line-height: 1.5;
-    margin-top: -8px;
-    margin-bottom: var(--space-5);
+    margin-top: -4px;
+    margin-bottom: var(--space-4);
     max-width: 720px;
 }
 
@@ -92,13 +124,14 @@ code, pre, .mono, [class*="mono"] {
 .takeaway {
     border-left: 3px solid var(--accent);
     padding: var(--space-3) var(--space-4);
-    margin: var(--space-5) 0;
+    margin: var(--space-4) 0;
     background: var(--surface);
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
     line-height: 1.5;
     color: var(--ink);
     max-width: 720px;
+    border-radius: 2px;
 }
 
 /* Cards / surfaces */
@@ -106,7 +139,8 @@ code, pre, .mono, [class*="mono"] {
     background: var(--surface);
     border: 1px solid var(--rule);
     padding: var(--space-4);
-    margin: var(--space-3) 0;
+    margin: var(--space-2) 0;
+    border-radius: 4px;
 }
 
 /* Verifier card (sub-verifier indicator) */
@@ -118,11 +152,13 @@ code, pre, .mono, [class*="mono"] {
     border: 1px solid var(--rule);
     padding: var(--space-3) var(--space-4);
     margin-bottom: var(--space-2);
+    border-radius: 3px;
 }
 
 .verifier-card .label {
     font-weight: 500;
     font-size: 15px;
+    color: var(--ink);
 }
 
 .verifier-card .desc {
@@ -143,7 +179,7 @@ code, pre, .mono, [class*="mono"] {
     border-left: 3px solid var(--good);
 }
 .verifier-card.pass .score {
-    background: rgba(45, 122, 79, 0.1);
+    background: rgba(63, 181, 126, 0.15);
     color: var(--good);
 }
 
@@ -151,22 +187,22 @@ code, pre, .mono, [class*="mono"] {
     border-left: 3px solid var(--bad);
 }
 .verifier-card.fail .score {
-    background: rgba(184, 52, 31, 0.1);
+    background: rgba(229, 105, 79, 0.15);
     color: var(--bad);
 }
 
 .verifier-card.partial {
-    border-left: 3px solid #C99A2E;
+    border-left: 3px solid var(--warn);
 }
 .verifier-card.partial .score {
-    background: rgba(201, 154, 46, 0.12);
-    color: #8A6818;
+    background: rgba(217, 164, 65, 0.15);
+    color: var(--warn);
 }
 
 /* Footer nav */
 .page-nav {
     border-top: 1px solid var(--rule);
-    margin-top: var(--space-6);
+    margin-top: var(--space-5);
     padding-top: var(--space-3);
     display: flex;
     justify-content: space-between;
@@ -179,6 +215,10 @@ code, pre, .mono, [class*="mono"] {
     text-decoration: none;
 }
 
+.page-nav a:hover {
+    color: var(--ink);
+}
+
 /* Hide Streamlit chrome */
 #MainMenu { visibility: hidden; }
 footer { visibility: hidden; }
@@ -187,9 +227,13 @@ header[data-testid="stHeader"] { background: transparent; }
 /* Constrain main content width for readability */
 .block-container {
     max-width: 920px;
-    padding-top: var(--space-5);
-    padding-bottom: var(--space-6);
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-5);
 }
+
+/* Tighten vertical gaps Streamlit injects between blocks */
+[data-testid="stVerticalBlock"] { gap: var(--space-2); }
+[data-testid="stHorizontalBlock"] { gap: var(--space-3); }
 
 /* Sample completion blocks */
 .completion {
@@ -201,6 +245,7 @@ header[data-testid="stHeader"] { background: transparent; }
     line-height: 1.55;
     white-space: pre-wrap;
     color: var(--ink);
+    border-radius: 3px;
 }
 
 .completion .label {
@@ -233,4 +278,32 @@ header[data-testid="stHeader"] { background: transparent; }
     color: var(--ink-soft);
     margin-bottom: 4px;
     font-family: "Inter", sans-serif;
+}
+
+/* Streamlit widget polish for dark mode */
+[data-testid="stMarkdownContainer"] strong { color: var(--ink); }
+
+.stSlider [data-baseweb="slider"] div[role="slider"] {
+    background-color: var(--accent);
+}
+
+button[kind], .stButton button {
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+}
+button[kind]:hover, .stButton button:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+}
+
+.stTextInput input, .stTextArea textarea, .stSelectbox div[data-baseweb="select"] > div {
+    background: var(--surface) !important;
+    color: var(--ink) !important;
+    border-color: var(--rule) !important;
+}
+
+/* Dataframes / tables */
+[data-testid="stTable"], .stDataFrame {
+    color: var(--ink);
 }

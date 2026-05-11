@@ -109,3 +109,13 @@ If you only have time for two files, read `examples/02_trade_signals/triangular_
 ## Status
 
 Pedagogical artifact. Not a training pipeline. Not a benchmark. Not financial advice.
+
+---
+
+## Homework — a Westworld-style verifier
+
+A small self-contained exercise lives in [`homework/`](./homework/). It is inspired by Halluminate's [Westworld](https://www.halluminate.ai/blog/westworld) — a suite of web-app simulators built so that web agents can be evaluated under deterministic, reproducible rewards rather than live-site noise. The same trick transplants to finance.
+
+You get a toy "broker simulator" (three venues, one ticker, the agent buys 100 shares at the best total price) and a starter file with three sub-verifier stubs to fill in, matching the three verification methods in the Westworld blog: a **state** check, a **component** check, and a **ground-truth** check computed against the simulator's own quotes. Three sample agents — optimal, lazy, overbought — give you something concrete to score, plus a few discussion questions that connect back to this repo's main thesis.
+
+Start at [`homework/README.md`](./homework/README.md).
